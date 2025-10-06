@@ -1,4 +1,4 @@
-# IPC Logging System
+# Nexus Logger - High-Performance IPC Logging System
 A high-performance, cross-platform logging system built on Inter-Process Communication (IPC) for embedded systems and real-time applications. Originally designed for QNX Neutrino RTOS.
 
 ## 🚀 Features
@@ -16,26 +16,50 @@ A high-performance, cross-platform logging system built on Inter-Process Communi
 - BaseLogger: Abstract logging interface
 - LoggerService: Client-facing facade
 
-## 📦 Quick Start
+## 📦 Quick Demo
 
-``` cpp
-#include <nexus/logger/logger_macros.hpp>
+### **Live Demonstration**
+The project includes a complete working demo that showcases the logging system in action:
 
-int main() {
-    // Initialize logging system
-    auto logger = std::make_unique<nexus::logger::LoggerService>();
-    nexus::logger::LoggerService::Initialize(std::move(logger));
+```bash
+git clone https://github.com/Tchernyshenko/nexus-logger
+cd nexus-logger
+mkdir build && cd build
+cmake .. -DBUILD_QNX=ON
+make
+```
 
-    // Use logging macros
-    LOG_INFO("Application started successfully");
-    LOG_ERROR("Database connection failed");
-    
-    return 0;
-}
+## 🚀 Run the interactive demo
+```
+./bin/nexus_logger
+```
+### Expected Demo Output
+```
+=== Nexus Logger Demo ===
+Logger started. Starting demo...
+
+[2024-01-15 10:30:25] [INFO] Demo application started
+[2024-01-15 10:30:25] [INFO] Processing item 0
+[2024-01-15 10:30:25] [INFO] Processing item 1
+[2024-01-15 10:30:26] [INFO] Processing item 2
+[2024-01-15 10:30:26] [ERROR] Simulated error occurred!
+[2024-01-15 10:30:26] [INFO] Processing item 3
+[2024-01-15 10:30:26] [INFO] Processing item 4
+[2024-01-15 10:30:26] [INFO] Demo application finished
+
+--- Performance demo ---
+[2024-01-15 10:30:26] [INFO] Performance test message 0
+...
+[2024-01-15 10:30:26] [INFO] Logged 100 messages in 45ms
+
+Stopping logger...
+[2024-01-15 10:30:27] [INFO] Logger has been stopped.
+
+=== Demo completed ===
 ```
 
 ## 🔧 Building
-``` bash
+```
 mkdir build && cd build
 cmake .. -DBUILD_QNX=ON
 make
