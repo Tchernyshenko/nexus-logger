@@ -62,7 +62,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 - Add tests for new functionality
 - Submit a pull request
 
-🐛 Bug Reports
+## 🐛 Bug Reports
 Please use GitHub Issues to report bugs or request features.
 
 
