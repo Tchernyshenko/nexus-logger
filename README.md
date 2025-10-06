@@ -3,7 +3,7 @@ A high-performance, cross-platform logging system built on Inter-Process Communi
 
 ## 🚀 Features
 - **High-Performance IPC**: Built on QNX Neutrino IPC mechanisms for minimal latency
-- **Cross-Platform**: Supports QNX Neutrino and Linux systems
+- **Platform**: Supports QNX Neutrino
 - **Thread-Safe**: Atomic operations and proper synchronization
 - **RAII Resource Management**: Automatic cleanup and exception safety
 - **Flexible Backends**: Extensible architecture for different logging outputs
