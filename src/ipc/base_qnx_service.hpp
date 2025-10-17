@@ -11,7 +11,7 @@
 #include "base_qnx_component.hpp"
 
 // Utils
-#include "../internal/ipc_utils.hpp"
+#include "../../utils/ipc_utils.hpp"
 
 namespace nexus::ipc {
 
@@ -45,7 +45,6 @@ public:
      * В цикле обрабатываются входящие сообщения и пульсы.
      *
      * @throw std::system_error При ошибках в IPC механизмах
-     * @note Потокобезопасность: не thread-safe, должен вызываться из одного потока
      */
     void Run();
 
@@ -76,7 +75,7 @@ private:
      * Виртуальный метод для обработки структурированных сообщений.
      * Наследники должны реализовать маршрутизацию и обработку разных типов сообщений.
      */
-    virtual void HandleMessage(const IpcMessage& ipc_message) = 0;
+    virtual void HandleMessage(int receive_id, const IpcMessage& ipc_message) = 0;
 
     /**
      * @brief Обработка ошибок приема сообщений

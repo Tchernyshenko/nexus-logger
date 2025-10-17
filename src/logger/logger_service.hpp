@@ -6,17 +6,18 @@
  */
 
 #include <memory>
+#include <mutex>
 #include <string>
 
 // Utils
-#include "../internal/ipc_utils.hpp"
+#include "../../utils/ipc_utils.hpp"
 
 // Types
-#include "../types/channels_names.hpp"
+#include "../../types/channels_names.hpp"
 
 namespace nexus::logger {
 
-class LoggerService {
+class LoggerService final {
 public:
     virtual ~LoggerService();
 
@@ -33,16 +34,27 @@ public:
     static LoggerService* Instance() noexcept;
 
     /**
+    * @brief Проверка соединения с логгером
+    * @return Результат проверки соединения
+    */
+    bool IsConnected() const;
+
+    /**
+    * @brief Переподключиться к каналу логгера
+    */
+    void Reconnect() const;
+
+    /**
      * @brief Отправить информационное сообщение
      * @param message Текст сообщения
      */
-    virtual void SendInfo(const std::string& message) const;
+    virtual void SendInfo(const std::string& message);
 
     /**
      * @brief Отправить сообщение об ошибке
      * @param message Текст сообщения
      */
-    virtual void SendError(const std::string& message) const;
+    virtual void SendError(const std::string& message);
 
     /**
      * @brief Установить имя логгера
@@ -52,6 +64,7 @@ public:
 
 private:
     static std::unique_ptr<LoggerService> instance_;
+    static std::mutex mutex_;
 
     mutable int logger_coid_{-1};
     std::string name_;

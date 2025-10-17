@@ -15,7 +15,7 @@
 #define LOG_INFO(message) \
     do { \
         if (auto* logger = ::nexus::logger::LoggerService::Instance()) { \
-            logger->SendInfo(static_cast<const std::string&>(message)); \
+            logger->SendInfo(std::string(message)); \
         } \
     } while(0)
 
@@ -27,6 +27,6 @@
 #define LOG_ERROR(message) \
     do { \
         if (auto* logger = ::nexus::logger::LoggerService::Instance()) { \
-            logger->SendError(static_cast<const std::string&>(message)); \
+            logger->SendError(std::string(message)); \
         } \
     } while(0)

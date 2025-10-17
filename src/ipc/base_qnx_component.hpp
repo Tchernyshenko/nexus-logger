@@ -7,7 +7,6 @@
 
 #include <string>
 
-
 // QNX headers
 #include <sys/dispatch.h>
 

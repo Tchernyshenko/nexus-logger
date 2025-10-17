@@ -1,11 +1,10 @@
 #include "base_logger.hpp"
 
-
 namespace nexus::logger {
+
 using namespace std::literals;
 
-BaseLogger::BaseLogger(const std::string& name)
-    : BaseQnxService(name) {}
+BaseLogger::BaseLogger(const std::string& name): BaseQnxService(name) {}
 
 void BaseLogger::Run() {
     Write("Logger has been started."s);
@@ -23,11 +22,13 @@ void BaseLogger::HandlePulse(const _pulse& ipc_pulse) {
     }
 }
 
-void BaseLogger::HandleMessage(const ipc::IpcMessage& ipc_message) {
+void BaseLogger::HandleMessage([[maybe_unused]] int receive_id,
+                               const ipc::IpcMessage& ipc_message) {
+
     using namespace utils;
     std::string message_time = time::ToString(time::GetCurrentTime());
     std::string message_header = GetMessageHeader(ipc_message.code);
-    std::string message_text(ipc_message.text);
+    std::string message_text(ipc_message.text,sizeof(ipc_message.text));
 
     Write(message_time + message_header + message_text);
     Flush();
@@ -48,4 +49,5 @@ std::string BaseLogger::GetMessageHeader(const ipc::MessageCode& code) {
         return " [UNKNOWN] "s;
     }
 }
+
 } // namespace nexus::common::logger

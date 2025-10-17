@@ -9,11 +9,11 @@
 #include "../ipc/base_qnx_service.hpp"
 
 // Utils
-#include "../internal/time_utils.hpp"
+#include "../../utils/time_utils.hpp"
 
 // Types
-#include "../types/message_types.hpp"
-#include "../types/pulse_types.hpp"
+#include "../../types/message_types.hpp"
+#include "../../types/pulse_types.hpp"
 
 namespace nexus::logger {
 
@@ -99,7 +99,7 @@ private:
      *
      * @note Вызывается из основного цикла MsgReceive в базовом классе
      */
-    void HandleMessage(const ipc::IpcMessage& ipc_message) override;
+    void HandleMessage(int receive_id, const ipc::IpcMessage& ipc_message) override;
 
     /**
      * @brief Обработка ошибок приема IPC сообщений

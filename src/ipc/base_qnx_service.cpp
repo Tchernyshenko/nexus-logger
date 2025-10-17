@@ -5,8 +5,7 @@ namespace nexus::ipc {
 std::atomic<bool> BaseQnxService::shutdown_requested_{false};
 
 BaseQnxService::BaseQnxService(const std::string& server_name)
-    : BaseQnxComponent(server_name),
-      running_{false} {
+    : BaseQnxComponent(server_name), running_{false} {
 
     struct sigaction action = {};
     action.sa_handler = SignalHandler;
@@ -38,7 +37,7 @@ void BaseQnxService::Run() {
         if (rcvid == 0) {
             HandlePulse(buffer.ipc_pulse);
         } else if (rcvid > 0) {
-            HandleMessage(buffer.ipc_message);
+            HandleMessage(rcvid, buffer.ipc_message);
             MsgReply(rcvid, 0, nullptr, 0);
         } else {
             // Если ошибка EINTR (прервано сигналом)
@@ -60,7 +59,7 @@ void BaseQnxService::Stop() {
 
     // Отправляем пульс, чтобы разблокировать MsgReceive
     if (GetAttach() && GetAttach()->chid != -1) {
-        MsgSendPulse(GetAttach()->chid, 20, _PULSE_CODE_UNBLOCK, 0);
+        MsgSendPulse(GetAttach()->chid, getprio(0), _PULSE_CODE_UNBLOCK, 0);
     }
 }
 
