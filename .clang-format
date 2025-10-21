@@ -1,0 +1,111 @@
+# Основной стиль - основанный на LLVM с адаптациями для современного C++
+BasedOnStyle: Google
+Language: Cpp
+
+# ========== НАСТРОЙКИ ДЛЯ БИБЛИОТЕК И INCLUDE ==========
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<.*\.h>'
+    Priority: 1
+  - Regex: '^<.*'
+    Priority: 2
+  - Regex: '^".*"'
+    Priority: 3
+SortIncludes: CaseSensitive
+
+# ========== ОТСТУПЫ И ПУСТЫЕ СТРОКИ ==========
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Пустые строки для разделения блоков кода
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+# ========== ФИГУРНЫЕ СКОБКИ ==========
+BreakBeforeBraces: Attach
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Always
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+# ========== ДЛИНА СТРОКИ ==========
+ColumnLimit: 100
+
+# ========== РАЗРЫВЫ СТРОК И ВЫРАВНИВАНИЕ ==========
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortCaseLabelsOnASingleLine: false
+
+# Перенос операторов
+BreakBeforeBinaryOperators: NonAssignment
+
+# Выравнивание
+AlignAfterOpenBracket: BlockIndent
+AlignConsecutiveMacros: None
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignOperands: Align
+AlignTrailingComments: true
+
+# ========== ОСТАЛЬНЫЕ НАСТРОЙКИ ==========
+AccessModifierOffset: -4
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortLambdasOnASingleLine: All
+
+# Конструкторы
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 4
+
+# Отступы
+IndentCaseLabels: true
+IndentCaseBlocks: false
+IndentGotoLabels: true
+IndentPPDirectives: BeforeHash
+
+# Пробелы
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+
+# Прочее
+BinPackArguments: true
+BinPackParameters: true
+FixNamespaceComments: false
+NamespaceIndentation: None
+QualifierAlignment: Leave
+SortUsingDeclarations: true
+SpacesInAngles: Never
+SpacesInContainerLiterals: true
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+AlwaysBreakTemplateDeclarations: Yes
+PointerAlignment: Left
+ReferenceAlignment: Left
